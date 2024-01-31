@@ -1,4 +1,4 @@
-# Home Services App
+# Fixitwala - Home services app
 
 Final project for MCA 
 
