@@ -4,4 +4,4 @@ Final project for MCA
 
 ## Getting Started
 
-- This is development branch
+- This is develop branch
