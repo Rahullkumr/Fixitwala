@@ -7,3 +7,5 @@ Final project for MCA
 TODO: add CI/CD code to build app when a branch gets merged into main branch
 
 TODO: lock main branch
+
+TODO: fix problem with IDX by importing this branch
