@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Home Screen of Home service app',
+                'Home Screen for Fixitwala app',
               ),
             ],
           ),
