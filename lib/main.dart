@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/admin/admin_dashboard.dart';
+import 'package:myapp/customer/customer_dashboard.dart';
+import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,12 +40,54 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text("Fixitwala"),
           centerTitle: true,
         ),
-        body: const Center(
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Home Screen of Home service app',
+              const Text(
+                'Home Screen for Fixitwala app',
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const AdminDashboard();
+                      },
+                    ),
+                  );
+                },
+                child: const Text("Admin Dashboard"),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ServiceProviderDashboard();
+                      },
+                    ),
+                  );
+                },
+                child: const Text("Service Provider Dashboard"),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const CustomerDashboard();
+                      },
+                    ),
+                  );
+                },
+                child: const Text("Customer Dashboard"),
               ),
             ],
           ),
