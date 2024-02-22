@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ServiceProviderDashboard extends StatelessWidget {
-  const ServiceProviderDashboard({super.key});
+class SPDashboard extends StatelessWidget {
+  const SPDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
