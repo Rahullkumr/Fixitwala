@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List screens = [
     const LandingPage(),
     const CustomerLogin(),
-    const Testsp(),
+    const SPLogin(),
   ];
 
   @override
@@ -54,15 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.home),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person_3),
               label: "Customer",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person_2),
               label: "Service Provider",
             ),
           ],
@@ -113,7 +113,7 @@ class LandingPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const ServiceProviderDashboard();
+                        return const SPDashboard();
                       },
                     ),
                   );
