@@ -11,7 +11,19 @@ class SPRegister extends StatefulWidget {
 
 class _SPRegisterState extends State<SPRegister> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final _designation = ["Electrician", "Plumber", "Cleaner", "Carpenter", "Mechanic", "Home Painter"];
+  final _designation = [
+    "Electrician",
+    "Plumber",
+    "Cleaner",
+    "Carpenter",
+    "Mechanic",
+    "Home Painter"
+  ];
+  String _selectedVal = "";
+
+  _SPRegisterState() {
+    _selectedVal = _designation[0];
+  }
 
   void _submitform() {
     if (_formKey.currentState!.validate()) {
@@ -110,7 +122,6 @@ class _SPRegisterState extends State<SPRegister> {
                       child: Icon(Icons.person, size: 60),
                     ),
                     const SizedBox(height: 15),
-
                     const Text(
                       "Hello User !",
                       style: TextStyle(
@@ -119,11 +130,9 @@ class _SPRegisterState extends State<SPRegister> {
                       ),
                     ),
                     const SizedBox(height: 10),
-
                     const Text("Create Your Account For Better"),
                     const Text("Experience"),
                     const SizedBox(height: 30),
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Full Name',
@@ -135,7 +144,6 @@ class _SPRegisterState extends State<SPRegister> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Address',
@@ -149,7 +157,6 @@ class _SPRegisterState extends State<SPRegister> {
                     const SizedBox(
                       height: 20,
                     ),
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -164,7 +171,6 @@ class _SPRegisterState extends State<SPRegister> {
                     const SizedBox(
                       height: 20,
                     ),
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Contact Number',
@@ -177,39 +183,27 @@ class _SPRegisterState extends State<SPRegister> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-
-                    // const DropdownMenu(
-                    //   width: double.infinity,
-                    //   dropdownMenuEntries: [
-                    //     DropdownMenuEntry(
-                    //       value: _designation[0],
-                    //       label: _designation[0],                          
-                    //     ),
-                    //     DropdownMenuEntry(
-                    //       value: "Plumber",
-                    //       label: "Plumber",
-                    //     ),
-                    //     DropdownMenuEntry(
-                    //       value: "Cleaner",
-                    //       label: "Cleaner",
-                    //     ),
-                    //     DropdownMenuEntry(
-                    //       value: "Carpenter",
-                    //       label: "Carpenter",
-                    //     ),
-                    //     DropdownMenuEntry(
-                    //       value: "Mechanic",
-                    //       label: "Mechanic",
-                    //     ),
-                    //     DropdownMenuEntry(
-                    //       value: "Home Painter",
-                    //       label: "Home Painter",
-                    //     ),
-                    //   ],
-                    // ),
-                    
+                    DropdownButtonFormField(
+                      value: _selectedVal,
+                      decoration: const InputDecoration(
+                        labelText: "Designation",
+                        border: OutlineInputBorder(),
+                      ),
+                      items: _designation
+                          .map(
+                            (eachItemFromDesignationList) => DropdownMenuItem(
+                              value: eachItemFromDesignationList,
+                              child: Text(eachItemFromDesignationList),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (val) {
+                        setState(() {
+                          _selectedVal = val as String;
+                        });
+                      },
+                    ),
                     const SizedBox(height: 20),
-
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -222,7 +216,6 @@ class _SPRegisterState extends State<SPRegister> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 30),
-
                     SizedBox(
                       height: 50,
                       width: double.infinity,
@@ -235,7 +228,6 @@ class _SPRegisterState extends State<SPRegister> {
                       ),
                     ),
                     const SizedBox(height: 15),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
