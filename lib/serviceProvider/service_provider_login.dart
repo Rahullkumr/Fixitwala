@@ -145,7 +145,7 @@ class _SPLoginState extends State<SPLogin> {
                         const SizedBox(width: 10),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {

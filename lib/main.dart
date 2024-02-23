@@ -86,7 +86,8 @@ class LandingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'This app works only in Pune',
+                'This app works only in Pune City',
+                style: TextStyle(fontSize: 40),
               ),
               const SizedBox(
                 height: 20,
