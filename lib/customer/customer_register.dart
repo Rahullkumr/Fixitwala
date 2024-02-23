@@ -213,7 +213,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                         const SizedBox(width: 10),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {

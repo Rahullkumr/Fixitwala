@@ -131,7 +131,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                         const SizedBox(width: 10),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {

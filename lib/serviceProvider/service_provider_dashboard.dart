@@ -7,7 +7,7 @@ class SPDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.grey,
         appBar: AppBar(
           title: const Text("Service Provider Dashboard"),
           centerTitle: true,
