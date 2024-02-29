@@ -105,8 +105,8 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                   children: [
                     const SizedBox(height: 20),
                     const CircleAvatar(
-                      child: Icon(Icons.person, size: 60),
                       radius: 40,
+                      child: Icon(Icons.person, size: 60),
                     ),
                     const SizedBox(height: 20),
 
