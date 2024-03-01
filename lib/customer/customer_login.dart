@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/customer/customer_dashboard.dart';
-import 'package:myapp/customer/customer_register.dart';
+import 'package:fixitwala/customer/customer_dashboard.dart';
+import 'package:fixitwala/customer/customer_register.dart';
 
 class CustomerLogin extends StatefulWidget {
   const CustomerLogin({super.key});

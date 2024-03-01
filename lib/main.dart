@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/landing_page.dart';
-import 'package:myapp/my_drawer.dart';
+import 'package:fixitwala/landing_page.dart';
+import 'package:fixitwala/my_drawer.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/admin/admin_dashboard.dart';
-import 'package:myapp/customer/customer_dashboard.dart';
-import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
+import 'package:fixitwala/admin/admin_dashboard.dart';
+import 'package:fixitwala/customer/customer_dashboard.dart';
+import 'package:fixitwala/serviceProvider/service_provider_dashboard.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
