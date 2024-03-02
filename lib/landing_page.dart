@@ -1,76 +1,78 @@
+import 'package:fixitwala/service/carpenter.dart';
+import 'package:fixitwala/service/cleaner.dart';
+import 'package:fixitwala/service/electrician.dart';
+import 'package:fixitwala/service/mechanic.dart';
+import 'package:fixitwala/service/painter.dart';
+import 'package:fixitwala/service/plumber.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/admin/admin_dashboard.dart';
-import 'package:myapp/customer/customer_dashboard.dart';
-import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+  LandingPage({super.key});
+
+  final servicePages = [
+    const ElectricianPage(),
+    const PainterPage(),
+    const CleanerPage(),
+    const MechanicPage(),
+    const CarpenterPage(),
+    const PlumberPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Add some wallpaper or something for landing page
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Padding(
-            padding: EdgeInsets.all(18.0),
-            child: Text(
-              'This app works only in Pune City',
-              style: TextStyle(fontSize: 40),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.all(18.0),
+              child: Text(
+                'This app works only in Pune City',
+                style: TextStyle(fontSize: 40),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const AdminDashboard();
-                  },
+            const SizedBox(height: 20),
+            const Text(
+              "Please select one",
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 20),            
+            SizedBox(
+              height: 350,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
                 ),
-              );
-            },
-            child: const Text("Admin Dashboard"),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const SPDashboard();
-                  },
-                ),
-              );
-            },
-            child: const Text("Service Provider Dashboard"),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const CustomerDashboard();
-                  },
-                ),
-              );
-            },
-            child: const Text("Customer Dashboard"),
-          ),
-        ],
+                itemCount: servicePages.length,
+                itemBuilder: (context, index) {
+                  return _buildServiceCard(servicePages[index], context);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+}
+
+Widget _buildServiceCard(Widget page, BuildContext context) {
+  return Card(
+    elevation: 6,
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => page),
+        ),
+        child: Text(page.toString().split("Page").first), // Extract name
+      ),
+    ),
+  );
 }

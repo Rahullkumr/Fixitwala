@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
-import 'package:myapp/serviceProvider/service_provider_register.dart';
+import 'package:fixitwala/serviceProvider/service_provider_dashboard.dart';
+import 'package:fixitwala/serviceProvider/service_provider_register.dart';
 
 class SPLogin extends StatefulWidget {
   const SPLogin({super.key});
