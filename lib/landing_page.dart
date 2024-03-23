@@ -1,21 +1,21 @@
 import 'package:fixitwala/service/carpenter.dart';
 import 'package:fixitwala/service/cleaner.dart';
-import 'package:fixitwala/service/electrician.dart';
+import 'package:fixitwala/service/all_electrician.dart';
 import 'package:fixitwala/service/mechanic.dart';
 import 'package:fixitwala/service/painter.dart';
 import 'package:fixitwala/service/plumber.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
-  LandingPage({super.key});
+  const LandingPage({super.key});
 
-  final servicePages = [
-    const ElectricianPage(),
-    const PainterPage(),
-    const CleanerPage(),
-    const MechanicPage(),
-    const CarpenterPage(),
-    const PlumberPage(),
+  final servicePages = const[
+    ElectricianPage(),
+    PainterPage(),
+    CleanerPage(),
+    MechanicPage(),
+    CarpenterPage(),
+    PlumberPage(),
   ];
 
   @override
