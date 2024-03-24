@@ -4,8 +4,16 @@ Final project for MCA
 
 ## Getting Started
 
-TODO: add CI/CD code to build app when a branch gets merged into main branch
+✅ TODO: add CI/CD code to build app when a branch gets merged into main branch
 
-TODO: lock main branch
+✅ TODO: lock main branch
 
-TODO: fix problem with IDX by importing this branch
+TODO: 
+
+
+## How to solve `gradlew` file error?
+
+- deleted `android` folder
+- untracked the deleted files using git
+- hit Hot Restart
+- done

@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         drawer: const MyDrawer(),
-        body: LandingPage(),
+        body: const LandingPage(),
       ),
     );
   }
