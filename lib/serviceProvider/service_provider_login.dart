@@ -50,6 +50,8 @@ class _SPLoginState extends State<SPLogin> {
                       _alertformKey.currentState!.save();
                       // Replace with your actual logic to send reset link via email
                       // print('Sending reset link to $_email');
+                      
+                      // TODO: check db for registered email
                       setState(() {
                         _forgotPasswordStatus =
                             'Password reset link sent to $_email';

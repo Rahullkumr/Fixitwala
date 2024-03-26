@@ -13,12 +13,14 @@ class ElectricianDetailsPage extends StatelessWidget {
             children: [
               Stack(
                 children: [
+                  // for image
                   Container(
                     height: 150,
                     width: double.infinity,
                     color: Colors.red,
                     child: const Text("Electrician photo from database"),
                   ),
+                  // for service provider details and review section
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 150),
                     child: Container(
@@ -26,19 +28,67 @@ class ElectricianDetailsPage extends StatelessWidget {
                       width: double.infinity,
                       color: Colors.green,
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 120),
-                        child: Text("Service Provider"),
+                        // service provider section
+                        padding: EdgeInsets.only(top: 120, left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Service Provider"),
+                            // TODO: one card here
+                            Text("Reviews (2)"),
+                            // TODO: two cards here
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 110),
-                    child: Container(
-                      color: Colors.blue,
-                      height: 150,
-                      width: double.infinity,
-                      child: const Text("Name\nDuration\nRating"),
+                  // for floating card
+                  const Padding(
+                    // for stacked card on top of two rows
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 80),
+                    child: Card(
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 15),
+                              //TODO: from database
+                              child: Text(
+                                "Shop Name/Description",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            ListTile(
+                              leading: Text("Duration",
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 15)),
+                              trailing: Text(
+                                "18:02 hour",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 10, 51, 189),
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              leading: Text("Rating",
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 15)),
+                              trailing: Text(
+                                "⭐ 0.0",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 10, 51, 189),
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -46,6 +96,18 @@ class ElectricianDetailsPage extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+
+            //TODO: opens up a dialog having 4 options
+
+          },
+          label: const Text("Contact Now", style: TextStyle(fontSize: 15),),
+          extendedPadding: const EdgeInsets.symmetric(horizontal: 130),
+          elevation: 5,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        /*
         bottomNavigationBar: NavigationBar(
           destinations: const [
             NavigationDestination(icon: Icon(Icons.home), label: "Dashboard"),
@@ -56,7 +118,7 @@ class ElectricianDetailsPage extends StatelessWidget {
             NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
           ],
         ),
-        
+        */
       ),
     );
   }

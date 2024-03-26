@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
 
-  final servicePages = const[
+  final servicePages = const [
     ElectricianPage(),
     PainterPage(),
     CleanerPage(),
@@ -39,7 +39,7 @@ class LandingPage extends StatelessWidget {
               "Please select one",
               style: TextStyle(fontSize: 20),
             ),
-            const SizedBox(height: 20),            
+            const SizedBox(height: 20),
             SizedBox(
               height: 350,
               child: GridView.builder(
@@ -62,16 +62,21 @@ class LandingPage extends StatelessWidget {
 }
 
 Widget _buildServiceCard(Widget page, BuildContext context) {
-  return Card(
-    elevation: 6,
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextButton(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
+  return InkWell(
+    onTap: () => Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    ),
+    child: Card(
+      elevation: 6,
+      child: Center(
+        child: Text(
+          page.toString().split("Page").first,
+          style: const TextStyle(
+            color: Color.fromARGB(255, 52, 49, 184),
+            fontSize: 17,
+          ),
         ),
-        child: Text(page.toString().split("Page").first), // Extract name
       ),
     ),
   );

@@ -89,8 +89,11 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       _alertformKey.currentState!.save();
                       // Replace with your actual logic to send reset link via email
                       // print('Sending reset link to $_email');
+
+                      // TODO: check db for registered email
                       setState(() {
-                        _forgotPasswordStatus = 'Password reset link sent to $_email';
+                        _forgotPasswordStatus =
+                            'Password reset link sent to $_email';
                       });
                       Navigator.of(context).pop();
                     }
@@ -154,7 +157,6 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-                    // TODO: Add forgot password logic?
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
