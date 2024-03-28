@@ -1,3 +1,5 @@
+import 'package:fixitwala/customer/chat.dart';
+import 'package:fixitwala/customer/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:fixitwala/landing_page.dart';
 import 'package:fixitwala/my_drawer.dart';
@@ -30,6 +32,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0; // Track the selected index
+
+  final List<Widget> _screens = const [
+    LandingPage(),
+    ChatPage(), // Replace with your actual screens
+    ProfilePage(), // Replace with your actual screens
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,11 +55,28 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         drawer: const MyDrawer(),
-        body: const LandingPage(),
+        body: _screens[_selectedIndex],
+        bottomNavigationBar: NavigationBar(
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+            NavigationDestination(
+                icon: Icon(Icons.chat_rounded), label: "Chat"),
+            NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
+          ],
+          onDestinationSelected: _onItemTapped,
+        ),
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
 
 /*
 bottomNavigationBar: NavigationBar(

@@ -60,13 +60,6 @@ class LandingPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-          NavigationDestination(icon: Icon(Icons.chat_rounded), label: "Chat"),
-          NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
-        ],
-      ),
     );
   }
 }

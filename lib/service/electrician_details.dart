@@ -1,3 +1,6 @@
+import 'package:url_launcher/url_launcher.dart';
+import 'package:fixitwala/customer/chat.dart';
+import 'package:fixitwala/review.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -5,6 +8,7 @@ class ElectricianDetailsPage extends StatelessWidget {
   ElectricianDetailsPage({super.key});
 
   //TODO: Replace with actual data from db
+  final String mobNo = "+919798567891";
   final List<String> names = [
     'Jitender Singh',
     'Ram Shrish',
@@ -105,8 +109,8 @@ class ElectricianDetailsPage extends StatelessWidget {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     subtitle: Column(
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           // TODO: date from database
@@ -190,13 +194,90 @@ class ElectricianDetailsPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            //TODO: opens up a dialog having 4 options
+            //TODO: get all data from db
             showDialog(
               context: context,
               builder: (BuildContext context) {
-                return const AlertDialog(
-                  title: Text('Choose any one'),
-                  content: Text("hello"),
+                return AlertDialog(
+                  title: const Center(child: Text('Contact details')),
+                  actions: [
+                    Wrap(
+                      spacing: 8.0, // Horizontal spacing between buttons
+                      runSpacing: 8.0, // Vertical spacing between buttons
+                      children: [
+                        OutlinedButton(
+                          onPressed: () {
+                            // Handle Call button press
+                            // Launch the dialer app with the phone number
+                            launchUrl(Uri.parse('tel:$mobNo'));
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(color: Colors.green),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24),
+                            child: Text(
+                              'Call',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {
+                            // Handle Chat button press
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const ChatPage();
+                              }),
+                            );
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(color: Colors.yellow),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24),
+                            child: Text(
+                              'Chat',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {
+                            // Handle Go to Home button press
+                            Navigator.popUntil(
+                                context, (route) => route.isFirst);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(color: Colors.blue),
+                          ),
+                          child: const Text(
+                            'Go to Home',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {
+                            // Handle Go to Review button press
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const GiveReview();
+                              }),
+                            );
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(color: Colors.blue),
+                          ),
+                          child: const Text(
+                            'Go to Review',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 );
               },
             );
