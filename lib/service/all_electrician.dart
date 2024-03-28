@@ -67,7 +67,7 @@ Widget _buildServiceCard(String page, BuildContext context) {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const ElectricianDetailsPage();
+            return ElectricianDetailsPage();
           },
         ),
       );

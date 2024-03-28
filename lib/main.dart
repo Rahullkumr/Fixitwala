@@ -44,3 +44,16 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+/*
+bottomNavigationBar: NavigationBar(
+  destinations: const [
+    NavigationDestination(icon: Icon(Icons.home), label: "Dashboard"),
+    NavigationDestination(icon: Icon(Icons.history), label: "History"),
+    // NavigationDestination(icon: Icon(Icons.menu_open), label: "Services"),
+    NavigationDestination(
+        icon: Icon(Icons.chat_rounded), label: "Chat"),
+    NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
+  ],
+),
+*/

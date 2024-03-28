@@ -20,42 +20,52 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Text(
-                'This app works only in Pune City',
-                style: TextStyle(fontSize: 40),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              "Please select one",
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 350,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+    // TODO: Implement bottom navigationbar
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text(
+                  'This app works only in Pune City',
+                  style: TextStyle(fontSize: 40),
                 ),
-                itemCount: servicePages.length,
-                itemBuilder: (context, index) {
-                  return _buildServiceCard(servicePages[index], context);
-                },
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              const Text(
+                "Please select one",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 350,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                  ),
+                  itemCount: servicePages.length,
+                  itemBuilder: (context, index) {
+                    return _buildServiceCard(servicePages[index], context);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
+      ),
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+          NavigationDestination(icon: Icon(Icons.chat_rounded), label: "Chat"),
+          NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
+        ],
       ),
     );
   }
