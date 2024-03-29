@@ -1,3 +1,5 @@
+import 'package:fixitwala/customer/chat.dart';
+import 'package:fixitwala/customer/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:fixitwala/landing_page.dart';
 import 'package:fixitwala/my_drawer.dart';
@@ -30,6 +32,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0; // Track the selected index
+
+  final List<Widget> _screens = const [
+    LandingPage(),
+    ChatPage(), // Replace with your actual screens
+    ProfilePage(), // Replace with your actual screens
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,8 +49,51 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         drawer: const MyDrawer(),
-        body: LandingPage(),
+        body: _screens[_selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            iconSize: 30,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat_rounded),
+                label: "Chat",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: "Profile",
+              ),
+            ],
+            currentIndex: _selectedIndex, // makes icon active onTap
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            }),
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+/*
+bottomNavigationBar: NavigationBar(
+  destinations: const [
+    NavigationDestination(icon: Icon(Icons.home), label: "Dashboard"),
+    NavigationDestination(icon: Icon(Icons.history), label: "History"),
+    // NavigationDestination(icon: Icon(Icons.menu_open), label: "Services"),
+    NavigationDestination(
+        icon: Icon(Icons.chat_rounded), label: "Chat"),
+    NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
+  ],
+),
+*/

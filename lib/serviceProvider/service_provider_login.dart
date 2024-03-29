@@ -11,6 +11,63 @@ class SPLogin extends StatefulWidget {
 
 class _SPLoginState extends State<SPLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _alertformKey = GlobalKey<FormState>();
+  String _email = "";
+  String _forgotPasswordStatus = '';
+  final _emailRegex =
+      RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+)(\.[a-zA-Z]{2,})+$');
+
+  void _forgotPassword() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Forgot Password?'),
+          content: Form(
+            key: _alertformKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email address';
+                    } else if (!_emailRegex.hasMatch(value)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) => _email = newValue!,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Email Address',
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_alertformKey.currentState!.validate()) {
+                      _alertformKey.currentState!.save();
+                      // Replace with your actual logic to send reset link via email
+                      // print('Sending reset link to $_email');
+                      
+                      // TODO: check db for registered email
+                      setState(() {
+                        _forgotPasswordStatus =
+                            'Password reset link sent to $_email';
+                      });
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   void _submitform() {
     if (_formKey.currentState!.validate()) {
@@ -87,7 +144,6 @@ class _SPLoginState extends State<SPLogin> {
                     ),
                     const SizedBox(height: 40),
 
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -113,13 +169,12 @@ class _SPLoginState extends State<SPLogin> {
                     ),
                     const SizedBox(height: 20),
                     // TODO: Add remember me and forgot password?
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("Remember me"),
-                        Text(
-                          "Forgot password?",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        TextButton(
+                          onPressed: _forgotPassword,
+                          child: const Text('Forgot Password?'),
                         ),
                       ],
                     ),
@@ -136,7 +191,6 @@ class _SPLoginState extends State<SPLogin> {
                       ),
                     ),
                     const SizedBox(height: 15),
-
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -157,6 +211,11 @@ class _SPLoginState extends State<SPLogin> {
                           child: const Text("Sign Up"),
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      _forgotPasswordStatus,
+                      style: const TextStyle(color: Colors.green),
                     ),
                   ],
                 ),
