@@ -7,10 +7,10 @@ class MyReviewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Change Password'),
+        title: const Text('My Reviews'),
       ),
       body: const Center(
-        child: Text("No reviews yet!"),
+        child: Text("Currently you have not rated any services"),
       ),
     );
   }

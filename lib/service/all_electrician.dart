@@ -95,7 +95,7 @@ Widget _buildServiceCard(String page, BuildContext context) {
           const SizedBox(height: 10),
           const Row(
             children: [
-              Padding(
+              Padding(  
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Text("description/shop name",
                     style: TextStyle(fontWeight: FontWeight.bold)),

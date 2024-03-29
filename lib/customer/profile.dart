@@ -1,5 +1,7 @@
 import 'package:fixitwala/customer/changepwd.dart';
 import 'package:fixitwala/customer/myreviews.dart';
+import 'package:fixitwala/privacy_policy.dart';
+import 'package:fixitwala/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -90,14 +92,16 @@ class ProfilePage extends StatelessWidget {
         ListTile(
           title: const Text('Privacy Policy'),
           leading: const Icon(Icons.security),
-          onTap: () {},
-          // onTap: () => Navigator.pushNamed(context, '/privacy_policy'), // Navigation
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
+            return const PrivacyPolicyPage();
+          }),), // Navigation
         ),
         ListTile(
           title: const Text('Terms & Conditions'),
           leading: const Icon(Icons.description),
-          onTap: () {},
-          // onTap: () => Navigator.pushNamed(context, '/terms_and_conditions'), // Navigation
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
+            return const TermsAndConditionsPage();
+          }),), // Navigation
         ),
         const Divider(thickness: 1.0),
         ListTile(

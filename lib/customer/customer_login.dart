@@ -1,3 +1,4 @@
+import 'package:fixitwala/customer/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:fixitwala/customer/customer_dashboard.dart';
 import 'package:fixitwala/customer/customer_register.dart';
@@ -28,7 +29,8 @@ class _CustomerLoginState extends State<CustomerLogin> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const CustomerDashboard();
+            return const ProfilePage();
+            // return const CustomerDashboard();
           },
         ),
       );
@@ -93,7 +95,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       // TODO: check db for registered email
                       setState(() {
                         _forgotPasswordStatus =
-                            'Password reset link sent to $_email';
+                            'Password sent to registered email: $_email';
                       });
                       Navigator.of(context).pop();
                     }

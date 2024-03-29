@@ -1,3 +1,4 @@
+import 'package:fixitwala/customer/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:fixitwala/customer/customer_dashboard.dart';
 import 'package:fixitwala/customer/customer_login.dart';
@@ -23,7 +24,8 @@ class _CustomerRegisterState extends State<CustomerRegister> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const CustomerDashboard();
+            return const ProfilePage();
+            // return const CustomerDashboard();
           },
         ),
       );

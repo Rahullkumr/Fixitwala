@@ -1,9 +1,9 @@
-import 'package:fixitwala/service/carpenter.dart';
-import 'package:fixitwala/service/cleaner.dart';
+import 'package:fixitwala/service/all_carpenter.dart';
+import 'package:fixitwala/service/all_cleaner.dart';
 import 'package:fixitwala/service/all_electrician.dart';
-import 'package:fixitwala/service/mechanic.dart';
-import 'package:fixitwala/service/painter.dart';
-import 'package:fixitwala/service/plumber.dart';
+import 'package:fixitwala/service/all_mechanic.dart';
+import 'package:fixitwala/service/all_painter.dart';
+import 'package:fixitwala/service/all_plumber.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {
@@ -13,14 +13,18 @@ class LandingPage extends StatelessWidget {
     ElectricianPage(),
     PainterPage(),
     CleanerPage(),
+    PlumberPage(),
     MechanicPage(),
     CarpenterPage(),
-    PlumberPage(),
   ];
+
+  // Helper function to extract service name from page type
+  String getServiceName(Widget page) {
+    return page.runtimeType.toString().replaceAll(RegExp(r'Page$'), '');
+  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Implement bottom navigationbar
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -52,7 +56,9 @@ class LandingPage extends StatelessWidget {
                   ),
                   itemCount: servicePages.length,
                   itemBuilder: (context, index) {
-                    return _buildServiceCard(servicePages[index], context);
+                    final servicePage = servicePages[index];
+                    final serviceName = getServiceName(servicePage);
+                    return _buildServiceCard(serviceName, servicePage, context); // Pass both servicePage and serviceName
                   },
                 ),
               ),
@@ -62,25 +68,25 @@ class LandingPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget _buildServiceCard(Widget page, BuildContext context) {
-  return InkWell(
-    onTap: () => Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => page),
-    ),
-    child: Card(
-      elevation: 6,
-      child: Center(
-        child: Text(
-          page.toString().split("Page").first,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 52, 49, 184),
-            fontSize: 17,
+  Widget _buildServiceCard(String serviceName, Widget servicePage, BuildContext context) {
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => servicePage), // Use servicePage directly
+      ),
+      child: Card(
+        elevation: 6,
+        child: Center(
+          child: Text(
+            serviceName,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 52, 49, 184),
+              fontSize: 17,
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

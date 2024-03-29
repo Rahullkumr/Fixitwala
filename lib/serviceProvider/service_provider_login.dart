@@ -54,7 +54,7 @@ class _SPLoginState extends State<SPLogin> {
                       // TODO: check db for registered email
                       setState(() {
                         _forgotPasswordStatus =
-                            'Password reset link sent to $_email';
+                            'Password sent to registered email: $_email';
                       });
                       Navigator.of(context).pop();
                     }
