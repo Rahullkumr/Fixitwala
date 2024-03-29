@@ -40,12 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ProfilePage(), // Replace with your actual screens
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,15 +50,28 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         drawer: const MyDrawer(),
         body: _screens[_selectedIndex],
-        bottomNavigationBar: NavigationBar(
-          destinations: const [
-            NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-            NavigationDestination(
-                icon: Icon(Icons.chat_rounded), label: "Chat"),
-            NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
-          ],
-          onDestinationSelected: _onItemTapped,
-        ),
+        bottomNavigationBar: BottomNavigationBar(
+            iconSize: 30,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat_rounded),
+                label: "Chat",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: "Profile",
+              ),
+            ],
+            currentIndex: _selectedIndex, // makes icon active onTap
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            }),
       ),
     );
   }

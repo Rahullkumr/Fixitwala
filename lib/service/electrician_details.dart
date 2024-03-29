@@ -233,7 +233,7 @@ class ElectricianDetailsPage extends StatelessWidget {
                             );
                           },
                           style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Colors.yellow),
+                            side: const BorderSide(color: Colors.orange),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 24),
