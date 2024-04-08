@@ -10,7 +10,10 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) => Drawer(
         child: Column(
           children: [
-            const SizedBox(height: 100),
+            Image.asset(
+              'images/banner.jpg',
+              fit: BoxFit.contain,
+            ),
             Container(
               padding: const EdgeInsets.all(24),
               child: Wrap(

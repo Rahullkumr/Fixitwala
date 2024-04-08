@@ -5,14 +5,16 @@ class AdminDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.amber,
-        appBar: AppBar(
-          title: const Text("Admin Dashboard"),
-          centerTitle: true,
+        backgroundColor: Colors.grey,
+        body: Center(
+          child: Column(
+            children: [
+              Text("Admin Dashboard"),
+            ],
+          ),
         ),
-        body: const Center(child: Text("Admin Dashboard")),
       ),
     );
   }
