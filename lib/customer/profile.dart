@@ -35,9 +35,12 @@ class ProfilePage extends StatelessWidget {
     // TODO: data from db
     return const Row(
       children: [
-        CircleAvatar(
-          radius: 45.0,
-          child: Icon(Icons.person_3_sharp),
+        ClipOval(
+          // crops the overflowing parts while maintaining aspect ratio
+          child: CircleAvatar(
+            radius: 45.0,
+            backgroundImage: AssetImage('images/ava.png'),
+          ),
         ),
         SizedBox(width: 18.0),
         Column(
@@ -92,16 +95,22 @@ class ProfilePage extends StatelessWidget {
         ListTile(
           title: const Text('Privacy Policy'),
           leading: const Icon(Icons.security),
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
-            return const PrivacyPolicyPage();
-          }),), // Navigation
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const PrivacyPolicyPage();
+            }),
+          ), // Navigation
         ),
         ListTile(
           title: const Text('Terms & Conditions'),
           leading: const Icon(Icons.description),
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
-            return const TermsAndConditionsPage();
-          }),), // Navigation
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const TermsAndConditionsPage();
+            }),
+          ), // Navigation
         ),
         const Divider(thickness: 1.0),
         ListTile(
