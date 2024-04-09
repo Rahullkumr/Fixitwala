@@ -35,14 +35,11 @@ class ProfilePage extends StatelessWidget {
     // TODO: data from db
     return const Row(
       children: [
-        ClipOval(
-          // crops the overflowing parts while maintaining aspect ratio
-          child: CircleAvatar(
-            radius: 45.0,
-            backgroundImage: AssetImage('images/ava.png'),
-          ),
+        CircleAvatar(
+          radius: 45.0,
+          backgroundImage: AssetImage('images/ava.png'),
         ),
-        SizedBox(width: 18.0),
+        SizedBox(width: 30.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,6 +47,7 @@ class ProfilePage extends StatelessWidget {
               'Rajesh Mistri', // Replace with user name
               style: TextStyle(fontSize: 18.0),
             ),
+            SizedBox(height: 5.0),
             Text(
               'rajesh@gmail.com', // Replace with user email
               style: TextStyle(fontSize: 14.0, color: Colors.grey),

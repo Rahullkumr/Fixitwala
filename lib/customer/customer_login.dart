@@ -81,7 +81,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                   },
                   onSaved: (newValue) => _email = newValue!,
                   decoration: const InputDecoration(
-                    hintText: 'Enter Email Address',
+                    hintText: 'Enter Registered Email',
                   ),
                 ),
                 const SizedBox(height: 10),
