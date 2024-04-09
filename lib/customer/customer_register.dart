@@ -1,6 +1,5 @@
 import 'package:fixitwala/customer/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:fixitwala/customer/customer_dashboard.dart';
 import 'package:fixitwala/customer/customer_login.dart';
 
 class CustomerRegister extends StatefulWidget {

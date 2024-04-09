@@ -1,6 +1,6 @@
 import 'package:fixitwala/customer/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:fixitwala/customer/customer_dashboard.dart';
+// import 'package:fixitwala/customer/customer_dashboard.dart';
 import 'package:fixitwala/customer/customer_register.dart';
 
 class CustomerLogin extends StatefulWidget {
@@ -81,7 +81,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                   },
                   onSaved: (newValue) => _email = newValue!,
                   decoration: const InputDecoration(
-                    hintText: 'Enter Email Address',
+                    hintText: 'Enter Registered Email',
                   ),
                 ),
                 const SizedBox(height: 10),

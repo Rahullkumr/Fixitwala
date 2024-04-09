@@ -37,9 +37,9 @@ class ProfilePage extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 45.0,
-          child: Icon(Icons.person_3_sharp),
+          backgroundImage: AssetImage('images/ava.png'),
         ),
-        SizedBox(width: 18.0),
+        SizedBox(width: 30.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,6 +47,7 @@ class ProfilePage extends StatelessWidget {
               'Rajesh Mistri', // Replace with user name
               style: TextStyle(fontSize: 18.0),
             ),
+            SizedBox(height: 5.0),
             Text(
               'rajesh@gmail.com', // Replace with user email
               style: TextStyle(fontSize: 14.0, color: Colors.grey),
@@ -92,16 +93,22 @@ class ProfilePage extends StatelessWidget {
         ListTile(
           title: const Text('Privacy Policy'),
           leading: const Icon(Icons.security),
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
-            return const PrivacyPolicyPage();
-          }),), // Navigation
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const PrivacyPolicyPage();
+            }),
+          ), // Navigation
         ),
         ListTile(
           title: const Text('Terms & Conditions'),
           leading: const Icon(Icons.description),
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
-            return const TermsAndConditionsPage();
-          }),), // Navigation
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return const TermsAndConditionsPage();
+            }),
+          ), // Navigation
         ),
         const Divider(thickness: 1.0),
         ListTile(

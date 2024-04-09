@@ -40,7 +40,7 @@ class _SPLoginState extends State<SPLogin> {
                   },
                   onSaved: (newValue) => _email = newValue!,
                   decoration: const InputDecoration(
-                    hintText: 'Enter Email Address',
+                    hintText: 'Enter Registered Email',
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -156,6 +156,7 @@ class _SPLoginState extends State<SPLogin> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
+
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -168,6 +169,7 @@ class _SPLoginState extends State<SPLogin> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
+
                     // TODO: Add remember me and forgot password?
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -179,6 +181,7 @@ class _SPLoginState extends State<SPLogin> {
                       ],
                     ),
                     const SizedBox(height: 30),
+
                     SizedBox(
                       height: 50,
                       width: double.infinity,
@@ -213,6 +216,7 @@ class _SPLoginState extends State<SPLogin> {
                       ],
                     ),
                     const SizedBox(height: 10),
+                    
                     Text(
                       _forgotPasswordStatus,
                       style: const TextStyle(color: Colors.green),
