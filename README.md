@@ -17,3 +17,5 @@ TODO:
 - untracked the deleted files using git
 - hit Hot Restart
 - done
+
+# took 15 hours to solve flutter 3.19 error
