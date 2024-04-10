@@ -1,4 +1,4 @@
-import 'package:fixitwala/customer/individual_chat.dart';
+import 'package:myapp/customer/individual_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

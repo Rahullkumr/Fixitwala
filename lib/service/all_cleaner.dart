@@ -1,4 +1,4 @@
-import 'package:fixitwala/service/cleaner_details.dart';
+import 'package:myapp/service/cleaner_details.dart';
 import 'package:flutter/material.dart';
 
 class CleanerPage extends StatelessWidget {

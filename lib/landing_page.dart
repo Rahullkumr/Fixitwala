@@ -1,9 +1,9 @@
-import 'package:fixitwala/service/all_carpenter.dart';
-import 'package:fixitwala/service/all_cleaner.dart';
-import 'package:fixitwala/service/all_electrician.dart';
-import 'package:fixitwala/service/all_mechanic.dart';
-import 'package:fixitwala/service/all_painter.dart';
-import 'package:fixitwala/service/all_plumber.dart';
+import 'package:myapp/service/all_carpenter.dart';
+import 'package:myapp/service/all_cleaner.dart';
+import 'package:myapp/service/all_electrician.dart';
+import 'package:myapp/service/all_mechanic.dart';
+import 'package:myapp/service/all_painter.dart';
+import 'package:myapp/service/all_plumber.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatelessWidget {

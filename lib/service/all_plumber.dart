@@ -1,4 +1,4 @@
-import 'package:fixitwala/service/plumber_details.dart';
+import 'package:myapp/service/plumber_details.dart';
 import 'package:flutter/material.dart';
 
 class PlumberPage extends StatelessWidget {
