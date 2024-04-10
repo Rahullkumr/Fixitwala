@@ -1,6 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:fixitwala/customer/chat.dart';
-import 'package:fixitwala/review.dart';
+import 'package:myapp/customer/chat.dart';
+import 'package:myapp/review.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

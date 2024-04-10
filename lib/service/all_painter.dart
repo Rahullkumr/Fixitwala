@@ -1,4 +1,4 @@
-import 'package:fixitwala/service/painter_details.dart';
+import 'package:myapp/service/painter_details.dart';
 import 'package:flutter/material.dart';
 
 class PainterPage extends StatelessWidget {

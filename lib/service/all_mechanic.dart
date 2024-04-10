@@ -1,4 +1,4 @@
-import 'package:fixitwala/service/mechanic_details.dart';
+import 'package:myapp/service/mechanic_details.dart';
 import 'package:flutter/material.dart';
 
 class MechanicPage extends StatelessWidget {

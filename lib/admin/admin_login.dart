@@ -1,4 +1,4 @@
-import 'package:fixitwala/admin/admin_dashboard.dart';
+import 'package:myapp/admin/admin_dashboard.dart';
 import 'package:flutter/material.dart';
 
 class AdminLogin extends StatefulWidget {

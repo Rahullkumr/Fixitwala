@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fixitwala/admin/admin_login.dart';
-import 'package:fixitwala/customer/customer_register.dart';
-import 'package:fixitwala/serviceProvider/service_provider_register.dart';
+import 'package:myapp/admin/admin_login.dart';
+import 'package:myapp/customer/customer_register.dart';
+import 'package:myapp/serviceProvider/service_provider_register.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.person),
-                    title: const Text('Customer'),
+                    title: const Text('Customer deleteit'),
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -1,7 +1,7 @@
-import 'package:fixitwala/customer/changepwd.dart';
-import 'package:fixitwala/customer/myreviews.dart';
-import 'package:fixitwala/privacy_policy.dart';
-import 'package:fixitwala/terms_and_conditions.dart';
+import 'package:myapp/customer/changepwd.dart';
+import 'package:myapp/customer/myreviews.dart';
+import 'package:myapp/privacy_policy.dart';
+import 'package:myapp/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {

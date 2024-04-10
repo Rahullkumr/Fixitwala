@@ -1,5 +1,5 @@
-import 'package:fixitwala/admin/manage_customers.dart';
-import 'package:fixitwala/admin/manage_sp.dart';
+import 'package:myapp/admin/manage_customers.dart';
+import 'package:myapp/admin/manage_sp.dart';
 import 'package:flutter/material.dart';
 
 class AdminDashboard extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:fixitwala/service/electrician_details.dart';
+import 'package:myapp/service/electrician_details.dart';
 import 'package:flutter/material.dart';
 
 class ElectricianPage extends StatelessWidget {
