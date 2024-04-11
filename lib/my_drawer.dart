@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.person),
-                    title: const Text('Customer deleteit'),
+                    title: const Text('Customer'),
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(

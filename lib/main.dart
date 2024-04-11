@@ -1,4 +1,5 @@
 import 'package:myapp/customer/chat.dart';
+import 'package:myapp/customer/order_history.dart';
 import 'package:myapp/customer/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/landing_page.dart';
@@ -35,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _screens = const [
     LandingPage(),
+    OrderHistory(),
     ChatPage(), 
     ProfilePage(), 
   ];
@@ -57,6 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: "Home",
               ),
               BottomNavigationBarItem(
+                icon: Icon(Icons.history),
+                label: "History",
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Icons.chat_rounded),
                 label: "Chat",
               ),
@@ -70,7 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
               setState(() {
                 _selectedIndex = index;
               });
-            }),
+            },
+            type: BottomNavigationBarType.fixed,
+          ),
       ),
     );
   }

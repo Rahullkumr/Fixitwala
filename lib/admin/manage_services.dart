@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 
 // TODO: implement using db
 
-class Customer {
+class Service {
   final int sno;
-  final String customerName;
-  final String customerId;
+  final String serviceName;
+  final String serviceId;
 
-  const Customer({
+  const Service({
     required this.sno,
-    required this.customerName,
-    required this.customerId,
+    required this.serviceName,
+    required this.serviceId,
   });
 }
 
-class ManageCustomers extends StatelessWidget {
-  const ManageCustomers({super.key});
+class ManageServices extends StatelessWidget {
+  const ManageServices({super.key});
 
-  final List<Customer> customers = const [
-    Customer(sno: 1, customerName: "Rajesh Mistri", customerId: "abc123"),
-    Customer(sno: 2, customerName: "Omkar Savale", customerId: "def456"),
-    Customer(sno: 3, customerName: "Harshit Mishra", customerId: "ghi789"),
-    Customer(sno: 4, customerName: "Priya Patel", customerId: "fis147"),
+  final List<Service> services = const [
+    Service(sno: 1, serviceName: "Plumbing Service", serviceId: "serv123"),
+    Service(sno: 2, serviceName: "Electric Service", serviceId: "serv456"),
   ];
 
   @override
@@ -33,7 +31,7 @@ class ManageCustomers extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
               child: Text(
-                "Manage Customers",
+                "Manage Services",
                 style: TextStyle(
                   fontSize: 30,
                 ),
@@ -42,17 +40,17 @@ class ManageCustomers extends StatelessWidget {
             Expanded(
               // Use Expanded to allow scrolling for the list
               child: ListView.builder(
-                itemCount: customers.length, // Number of cards to create
+                itemCount: services.length, // Number of cards to create
                 itemBuilder: (context, index) {
-                  final customer = customers[index];
+                  final service = services[index];
                   return Card(
                     child: ListTile(
-                      leading: Text("${customer.sno}"),
+                      leading: Text("${service.sno}"),
                       title: Text(
-                        customer.customerName,
+                        service.serviceName,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text(customer.customerId),
+                      subtitle: Text(service.serviceId),
                       trailing: const Text(
                         "dropdown",
                         style: TextStyle(fontSize: 15),

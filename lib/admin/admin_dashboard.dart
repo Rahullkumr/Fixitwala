@@ -1,4 +1,6 @@
 import 'package:myapp/admin/manage_customers.dart';
+import 'package:myapp/admin/manage_orders.dart';
+import 'package:myapp/admin/manage_services.dart';
 import 'package:myapp/admin/manage_sp.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
   final List<Widget> _screens = const [
     ManageSP(),
     ManageCustomers(),
+    ManageOrders(),
+    ManageServices(),
   ];
 
   @override
@@ -34,13 +38,22 @@ class _AdminDashboardState extends State<AdminDashboard> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_repair_service),
-              label: "Manage SP",
+              label: "SP",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.people),
-              label: "Manage Customer",
+              label: "Customers",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_shopping_cart),
+              label: "Orders",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.electrical_services),
+              label: "Services",
             ),
           ],
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );
