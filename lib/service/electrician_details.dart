@@ -38,9 +38,8 @@ class ElectricianDetailsPage extends StatelessWidget {
                   // for service provider details and review section
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 150),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
-                      // color: Colors.green,
                       child: Padding(
                         // service provider section
                         padding: const EdgeInsets.only(
@@ -140,7 +139,7 @@ class ElectricianDetailsPage extends StatelessWidget {
                   // for floating card
                   const Padding(
                     // for stacked card on top of two rows
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 80),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 70),
                     child: Card(
                       child: Padding(
                         padding:
@@ -168,6 +167,38 @@ class ElectricianDetailsPage extends StatelessWidget {
                                   color: Color.fromARGB(255, 10, 51, 189),
                                   fontSize: 13,
                                 ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 0, 25, 0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Fixed Rate",
+                                        style: TextStyle(
+                                          color: Colors.blueGrey,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "₹ 300",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 10, 51, 189),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                             ListTile(

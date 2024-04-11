@@ -171,6 +171,38 @@ class MechanicDetailsPage extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 0, 25, 0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Fixed Rate",
+                                        style: TextStyle(
+                                          color: Colors.blueGrey,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "₹ 300",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 10, 51, 189),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                             ListTile(
                               leading: Text("Rating",
                                   style: TextStyle(
