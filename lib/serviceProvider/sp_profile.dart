@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:myapp/customer/changepwd.dart';
-import 'package:myapp/customer/myreviews.dart';
 import 'package:myapp/privacy_policy.dart';
 import 'package:myapp/terms_and_conditions.dart';
-import 'package:flutter/material.dart';
+import 'package:myapp/serviceProvider/my_services.dart';
+import 'package:myapp/serviceProvider/view_feedback.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class SPProfile extends StatelessWidget {
+  const SPProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +38,31 @@ class ProfilePage extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 45.0,
-          backgroundImage: AssetImage('images/ava.png'),
+          backgroundImage: AssetImage('images/avat.png'),
         ),
         SizedBox(width: 30.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Rajesh Mistri',
+              'Bablu Ram', // Replace with user name
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 5.0),
             Text(
-              'rajesh@gmail.com',
+              'babluram@gmail.com', // Replace with user email
               style: TextStyle(fontSize: 14.0, color: Colors.grey),
             ),
           ],
         ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon( Icons.verified, color: Colors.green, size: 40,),
+            ],
+          ),
+        )
       ],
     );
   }
@@ -62,23 +71,23 @@ class ProfilePage extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          title: const Text('Change Password'),
-          leading: const Icon(Icons.lock),
+          title: const Text('My Services'),
+          leading: const Icon(Icons.list_alt),
           trailing: const Icon(Icons.chevron_right),
           onTap: () =>
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const ChangePasswordPage();
+            return const MyServices();
           })), // Navigation
         ),
         ListTile(
-          title: const Text('My Reviews'),
-          leading: const Icon(Icons.star),
+          title: const Text('View Feedback'),
+          leading: const Icon(Icons.feedback),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const MyReviewsPage();
+                return const ViewFeedback();
               },
             ),
           ), // Navigation
@@ -111,6 +120,15 @@ class ProfilePage extends StatelessWidget {
           ), // Navigation
         ),
         const Divider(thickness: 1.0),
+        ListTile(
+          title: const Text('Change Password'),
+          leading: const Icon(Icons.lock),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () =>
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const ChangePasswordPage();
+          })), // Navigation
+        ),
         ListTile(
           title: const Text('Delete Account'),
           leading: const Icon(Icons.delete),

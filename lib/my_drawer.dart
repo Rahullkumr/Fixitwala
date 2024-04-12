@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/admin/admin_login.dart';
-import 'package:myapp/customer/customer_register.dart';
-import 'package:myapp/serviceProvider/service_provider_register.dart';
+import 'package:myapp/customer/customer_login.dart';
+import 'package:myapp/serviceProvider/service_provider_login.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -26,7 +26,7 @@ class MyDrawer extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const CustomerRegister();
+                          return const CustomerLogin();
                         },
                       ),
                     ),
@@ -38,7 +38,7 @@ class MyDrawer extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const SPRegister();
+                          return const SPLogin();
                         },
                       ),
                     ),

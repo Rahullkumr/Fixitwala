@@ -71,10 +71,6 @@ Widget _buildServiceCard(String page, BuildContext context) {
           },
         ),
       );
-      // onPressed: () => Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => page),
-      // ),
     },
     child: Card(
       elevation: 6,
