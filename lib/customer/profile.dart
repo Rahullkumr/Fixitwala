@@ -44,12 +44,12 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Rajesh Mistri', // Replace with user name
+              'Rajesh Mistri',
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 5.0),
             Text(
-              'rajesh@gmail.com', // Replace with user email
+              'rajesh@gmail.com',
               style: TextStyle(fontSize: 14.0, color: Colors.grey),
             ),
           ],

@@ -1,5 +1,5 @@
 import 'package:myapp/customer/chat.dart';
-import 'package:myapp/customer/order_history.dart';
+import 'package:myapp/customer/contact_history.dart';
 import 'package:myapp/customer/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/landing_page.dart';
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _screens = const [
     LandingPage(),
-    OrderHistory(),
+    ContactHistory(),
     ChatPage(), 
     ProfilePage(), 
   ];

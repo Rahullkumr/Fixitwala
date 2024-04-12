@@ -38,23 +38,31 @@ class SPProfile extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 45.0,
-          backgroundImage: AssetImage('images/ava.png'),
+          backgroundImage: AssetImage('images/avat.png'),
         ),
         SizedBox(width: 30.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Rajesh Mistri', // Replace with user name
+              'Bablu Ram', // Replace with user name
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 5.0),
             Text(
-              'rajesh@gmail.com', // Replace with user email
+              'babluram@gmail.com', // Replace with user email
               style: TextStyle(fontSize: 14.0, color: Colors.grey),
             ),
           ],
         ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon( Icons.verified, color: Colors.green, size: 40,),
+            ],
+          ),
+        )
       ],
     );
   }

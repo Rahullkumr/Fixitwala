@@ -34,12 +34,15 @@ class PlumberDetailsPage extends StatelessWidget {
                     height: 150,
                     width: double.infinity,
                     color: Colors.red,
-                    child: const Text("photo from database"),
+                    child: const Image(
+                    image: AssetImage('images/plumber.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                   ),
                   // for service provider details and review section
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 150),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       // color: Colors.green,
                       child: Padding(

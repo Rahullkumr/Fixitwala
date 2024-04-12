@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OrderHistory extends StatelessWidget {
-  const OrderHistory({super.key});
+class ContactHistory extends StatelessWidget {
+  const ContactHistory({super.key});
 
   // TODO: Implement using db
 
@@ -21,7 +21,7 @@ class OrderHistory extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 2,
+                itemCount: 1,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return const Card(

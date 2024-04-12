@@ -84,7 +84,10 @@ Widget _buildServiceCard(String page, BuildContext context) {
                 child: Container(
                   color: Colors.cyan,
                   height: 90,
-                  child: const Text("image here"),
+                  child: const Image(
+                    image: AssetImage('images/plumber.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],

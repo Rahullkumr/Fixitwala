@@ -18,8 +18,6 @@ class CleanerDetailsPage extends StatelessWidget {
     "Highly recommended!",
   ];
 
-   
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,9 +38,8 @@ class CleanerDetailsPage extends StatelessWidget {
                   // for service provider details and review section
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 150),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
-                      // color: Colors.green,
                       child: Padding(
                         // service provider section
                         padding: const EdgeInsets.only(

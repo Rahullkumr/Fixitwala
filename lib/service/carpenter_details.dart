@@ -40,7 +40,7 @@ class CarpenterDetailsPage extends StatelessWidget {
                   // for service provider details and review section
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 150),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       // color: Colors.green,
                       child: Padding(
