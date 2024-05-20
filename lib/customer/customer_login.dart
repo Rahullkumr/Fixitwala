@@ -1,7 +1,6 @@
-import 'package:myapp/customer/profile.dart';
 import 'package:flutter/material.dart';
-// import 'package:fixitwala/customer/customer_dashboard.dart';
 import 'package:myapp/customer/customer_register.dart';
+import 'package:myapp/customer/customer_homepage.dart';
 
 class CustomerLogin extends StatefulWidget {
   const CustomerLogin({super.key});
@@ -29,8 +28,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const ProfilePage();
-            // return const CustomerDashboard();
+            return const CustomerHomePage();
           },
         ),
       );

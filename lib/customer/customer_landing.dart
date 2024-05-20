@@ -6,8 +6,8 @@ import 'package:myapp/service/all_painter.dart';
 import 'package:myapp/service/all_plumber.dart';
 import 'package:flutter/material.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+class CustomerLandingPage extends StatelessWidget {
+  const CustomerLandingPage({super.key});
 
   final servicePages = const [
     ElectricianPage(),
@@ -46,20 +46,25 @@ class LandingPage extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 350,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SizedBox(
+                  height: 350,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemCount: servicePages.length,
+                    itemBuilder: (context, index) {
+                      final servicePage = servicePages[index];
+                      final serviceName = getServiceName(servicePage);
+                      return _buildServiceCard(serviceName, servicePage,
+                          context); // Pass both servicePage and serviceName
+                    },
                   ),
-                  itemCount: servicePages.length,
-                  itemBuilder: (context, index) {
-                    final servicePage = servicePages[index];
-                    final serviceName = getServiceName(servicePage);
-                    return _buildServiceCard(serviceName, servicePage, context); // Pass both servicePage and serviceName
-                  },
                 ),
               ),
             ],
@@ -69,12 +74,13 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceCard(String serviceName, Widget servicePage, BuildContext context) {
+  Widget _buildServiceCard(
+      String serviceName, Widget servicePage, BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => servicePage), // Use servicePage directly
-      ),
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => servicePage));
+      },
       child: Card(
         elevation: 6,
         child: Center(

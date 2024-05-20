@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/admin/admin_login.dart';
-import 'package:myapp/customer/customer_login.dart';
 import 'package:myapp/serviceProvider/service_provider_login.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -19,17 +18,14 @@ class MyDrawer extends StatelessWidget {
               child: Wrap(
                 runSpacing: 16,
                 children: [
-                  ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text('Customer'),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const CustomerLogin();
-                        },
+                  const ListTile(
+                    title: Text(
+                      'Please Select your role',
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
                     ),
+                    onTap: null,
                   ),
                   ListTile(
                     leading: const Icon(Icons.person_2),
