@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/customer/changepwd.dart';
+import 'package:myapp/main.dart';
 import 'package:myapp/privacy_policy.dart';
 import 'package:myapp/terms_and_conditions.dart';
 import 'package:myapp/serviceProvider/my_services.dart';
@@ -139,8 +140,11 @@ class SPProfile extends StatelessWidget {
         ListTile(
           title: const Text('Logout'),
           leading: const Icon(Icons.exit_to_app),
-          onTap: () {},
-          // onTap: () => _logout(context), // Handle logout logic
+          onTap: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+              return const MyHomePage();
+            },),);
+          },
         ),
       ],
     );

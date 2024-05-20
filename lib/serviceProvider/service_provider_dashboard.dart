@@ -29,7 +29,7 @@ class _SPDashboardState extends State<SPDashboard> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.dashboard),
-              label: "Dashboard",
+              label: "Booking",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.chat_rounded),

@@ -1,5 +1,4 @@
 import 'package:myapp/customer/changepwd.dart';
-import 'package:myapp/customer/customer_login.dart';
 import 'package:myapp/customer/myreviews.dart';
 import 'package:myapp/main.dart';
 import 'package:myapp/privacy_policy.dart';
