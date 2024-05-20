@@ -44,16 +44,31 @@ class ManageSP extends StatelessWidget {
                 itemCount: sps.length, // Number of cards to create
                 itemBuilder: (context, index) {
                   final sp = sps[index];
-                  return Card(                    
+                  return Card(
                     child: ListTile(
                       leading: Text("${sp.sno}"),
-                      title: Text(sp
-                          .spName, style: const TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: Text(
-                          sp.spId),
-                      trailing: const Text(
-                        "dropdown",
-                        style: TextStyle(fontSize: 15),
+                      title: Text(
+                        sp.spName,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(sp.spId),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {
+                              // _showForm(student);
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () async {
+                              // await dbHelper.delete(student.id!);
+                              // _refreshStudentList();
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   );

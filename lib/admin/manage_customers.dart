@@ -53,9 +53,23 @@ class ManageCustomers extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(customer.customerId),
-                      trailing: const Text(
-                        "dropdown",
-                        style: TextStyle(fontSize: 15),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {
+                              // _showForm(student);
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () async {
+                              // await dbHelper.delete(student.id!);
+                              // _refreshStudentList();
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   );
