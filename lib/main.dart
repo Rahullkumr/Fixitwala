@@ -1,8 +1,5 @@
-import 'package:myapp/customer/chat.dart';
-import 'package:myapp/customer/contact_history.dart';
-import 'package:myapp/customer/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/landing_page.dart';
+import 'package:myapp/customer/customer_login.dart';
 import 'package:myapp/my_drawer.dart';
 
 void main() {
@@ -32,15 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0; // Track the selected index
-
-  final List<Widget> _screens = const [
-    LandingPage(),
-    ContactHistory(),
-    ChatPage(), 
-    ProfilePage(), 
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,35 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         drawer: const MyDrawer(),
-        body: _screens[_selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-            iconSize: 30,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.history),
-                label: "History",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.chat_rounded),
-                label: "Chat",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Profile",
-              ),
-            ],
-            currentIndex: _selectedIndex, // makes icon active onTap
-            onTap: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            type: BottomNavigationBarType.fixed,
-          ),
+        body: const CustomerLogin(),
       ),
     );
   }
