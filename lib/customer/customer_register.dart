@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/customer/customer_login.dart';
 import 'package:myapp/customer/customer_homepage.dart';
+import '../models/customer.dart';
+import '../helpers/dbhelper.dart';
 
 class CustomerRegister extends StatefulWidget {
   const CustomerRegister({super.key});
@@ -11,9 +13,37 @@ class CustomerRegister extends StatefulWidget {
 
 class _CustomerRegisterState extends State<CustomerRegister> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  void _submitform() {
+  // late DatabaseHelper dbHelper;
+  final dbHelper = DatabaseHelper.instance;
+
+  void _submitform() async {
     if (_formKey.currentState!.validate()) {
+      // Get the form values
+      String name = _nameController.text;
+      String address = _addressController.text;
+      String email = _emailController.text;
+      String mobile = _mobileController.text;
+      String password = _passwordController.text;
+
+      // Create a Customer object
+      Customer customer = Customer(
+        cName: name,
+        address: address,
+        emailId: email,
+        mobileNo: mobile,
+        pwd: password,
+        verificationStatus: 0,
+      );
+
+      // Insert the customer into the database
+      await dbHelper.insertCustomer(customer);
+
       ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
         const SnackBar(
           content: Text("Registration successful"),
@@ -109,8 +139,6 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                       child: Icon(Icons.person, size: 60),
                     ),
                     const SizedBox(height: 20),
-
-
                     const Text(
                       "Hello User !",
                       style: TextStyle(
@@ -118,12 +146,8 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                       ),
                     ),
                     const SizedBox(height: 20),
-
-
                     const Text("Signup For Better Experience"),
                     const SizedBox(height: 20),
-
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Full Name',
@@ -131,12 +155,11 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _nameController,
                       validator: _validateName,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Address',
@@ -144,14 +167,11 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _addressController,
                       validator: _validateAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -159,29 +179,25 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       validator: _validateEmail,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-
-                    TextFormField(                      
+                    const SizedBox(height: 20),
+                    TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Contact Number',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _mobileController,
                       keyboardType: TextInputType.phone,
                       validator: _validateMobile,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-
-
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -190,6 +206,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _passwordController,
                       validator: _validatePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),

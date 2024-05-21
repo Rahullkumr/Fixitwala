@@ -11,7 +11,7 @@ class SPRegister extends StatefulWidget {
 
 class _SPRegisterState extends State<SPRegister> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _designation = [
+  final _category = [
     "Electrician",
     "Plumber",
     "Cleaner",
@@ -22,7 +22,7 @@ class _SPRegisterState extends State<SPRegister> {
   String _selectedVal = "";
 
   _SPRegisterState() {
-    _selectedVal = _designation[0];
+    _selectedVal = _category[0];
   }
 
   void _submitform() {
@@ -85,6 +85,23 @@ class _SPRegisterState extends State<SPRegister> {
     RegExp mobileRegExp = RegExp(r'^[6789]\d{9}$');
     if (!mobileRegExp.hasMatch(value)) {
       return 'Please enter a valid Number';
+    }
+    return null;
+  }
+
+  String? _validateAvailability(value) {
+    if (value!.isEmpty) {
+      return 'Please enter availability in hours';
+    }
+    if (value.length > 2 || int.parse(value) < 1 || int.parse(value) > 24) {
+      return 'Please enter valid hours';
+    }
+    return null;
+  }
+
+  String? _validateDescription(value) {
+    if (value!.isEmpty) {
+      return 'Please enter shop name or description';
     }
     return null;
   }
@@ -168,9 +185,7 @@ class _SPRegisterState extends State<SPRegister> {
                       validator: _validateEmail,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Contact Number',
@@ -186,14 +201,14 @@ class _SPRegisterState extends State<SPRegister> {
                     DropdownButtonFormField(
                       value: _selectedVal,
                       decoration: const InputDecoration(
-                        labelText: "Designation",
+                        labelText: "Category",
                         border: OutlineInputBorder(),
                       ),
-                      items: _designation
+                      items: _category
                           .map(
-                            (eachItemFromDesignationList) => DropdownMenuItem(
-                              value: eachItemFromDesignationList,
-                              child: Text(eachItemFromDesignationList),
+                            (eachItemFromCategoryList) => DropdownMenuItem(
+                              value: eachItemFromCategoryList,
+                              child: Text(eachItemFromCategoryList),
                             ),
                           )
                           .toList(),
@@ -202,6 +217,29 @@ class _SPRegisterState extends State<SPRegister> {
                           _selectedVal = val as String;
                         });
                       },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Description/Shop name',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      validator: _validateDescription,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Available hours',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: _validateAvailability,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
