@@ -6,7 +6,7 @@ import '../models/service_provider.dart';
 class DatabaseHelper {
   static const _databaseName = "fixitwala.db";
   static const _databaseVersion = 1;
-  static const _customerTable = "customers";
+  static const String _customerTable = "customers";
   static const _serviceProviderTable = "service_providers";
 
   static final DatabaseHelper instance = DatabaseHelper._init();
@@ -141,6 +141,25 @@ class DatabaseHelper {
     } catch (e) {
       print('Error deleting customer: $e');
       return -1;
+    }
+  }
+
+  Future<Customer?> authenticateCustomer(String email, String password) async {
+    try {
+      final db = await instance.database;
+      final maps = await db.query(
+        _customerTable,
+        where: 'emailId = ? AND pwd = ?',
+        whereArgs: [email, password],
+      );
+      if (maps.isNotEmpty) {
+        return Customer.fromMap(maps.first);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error authenticating customer: $e');
+      return null;
     }
   }
 

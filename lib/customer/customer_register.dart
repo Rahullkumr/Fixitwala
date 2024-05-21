@@ -42,21 +42,46 @@ class _CustomerRegisterState extends State<CustomerRegister> {
       );
 
       // Insert the customer into the database
-      await dbHelper.insertCustomer(customer);
+      // await dbHelper.insertCustomer(customer);
 
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text("Registration successful"),
-        ),
-      );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const CustomerHomePage();
-          },
-        ),
-      );
+      // ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+      //   const SnackBar(
+      //     content: Text("Registration successful"),
+      //   ),
+      // );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) {
+      //       return const CustomerHomePage();
+      //     },
+      //   ),
+      // );
+// Insert the customer into the database
+
+      await dbHelper.insertCustomer(customer).then((value) {
+        // Success scenario - handle successful insertion
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Registration successful"),
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const CustomerHomePage();
+            },
+          ),
+        );
+      }, onError: (error) {
+        // Error scenario - handle insertion failure
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Registration failed"),
+          ),
+        );
+      });
     }
   }
 
