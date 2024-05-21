@@ -39,7 +39,7 @@ class SPProfile extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 45.0,
-          backgroundImage: AssetImage('images/avat.png'),
+          backgroundImage: AssetImage('images/sp.png'),
         ),
         SizedBox(width: 30.0),
         Column(

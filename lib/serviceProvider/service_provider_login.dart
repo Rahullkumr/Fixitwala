@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
 import 'package:myapp/serviceProvider/service_provider_register.dart';
+import 'package:myapp/helpers/dbhelper.dart';
+import 'package:myapp/models/service_provider.dart';
 
 class SPLogin extends StatefulWidget {
   const SPLogin({super.key});
@@ -11,8 +13,10 @@ class SPLogin extends StatefulWidget {
 
 class _SPLoginState extends State<SPLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final _alertformKey = GlobalKey<FormState>();
   String _email = "";
+  String _password = "";
   String _forgotPasswordStatus = '';
   final _emailRegex =
       RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+)(\.[a-zA-Z]{2,})+$');
@@ -49,12 +53,11 @@ class _SPLoginState extends State<SPLogin> {
                     if (_alertformKey.currentState!.validate()) {
                       _alertformKey.currentState!.save();
                       // Replace with your actual logic to send reset link via email
-                      // print('Sending reset link to $_email');
-                      
-                      // TODO: check db for registered email
+
+                      // TODO: Implement logic to check db for registered email and send reset link
                       setState(() {
                         _forgotPasswordStatus =
-                            'Password sent to registered email: $_email';
+                            'Password reset link sent to registered email: $_email';
                       });
                       Navigator.of(context).pop();
                     }
@@ -69,21 +72,36 @@ class _SPLoginState extends State<SPLogin> {
     );
   }
 
-  void _submitform() {
+  void _submitform() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text("Login successful"),
-        ),
-      );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const SPDashboard();
-          },
-        ),
-      );
+      _formKey.currentState!.save();
+      DatabaseHelper dbHelper = DatabaseHelper.instance;
+      ServiceProvider? sp =
+          await dbHelper.authenticateServiceProvider(_email, _password);
+
+      if (sp != null) {
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Login successful"),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const SPDashboard();
+            },
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Invalid email or password"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -91,8 +109,7 @@ class _SPLoginState extends State<SPLogin> {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
-    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegExp.hasMatch(value)) {
+    if (!_emailRegex.hasMatch(value)) {
       return 'Please enter a valid email';
     }
     return null;
@@ -126,24 +143,20 @@ class _SPLoginState extends State<SPLogin> {
                 child: Column(
                   children: [
                     const SizedBox(height: 40),
-
                     const Text(
                       "Hello Again !",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
-
                     const Text(
                       "Welcome Back, You Have Been",
                     ),
                     const SizedBox(height: 5),
-
                     const Text(
                       "Missed For A Long Time",
                     ),
                     const SizedBox(height: 40),
-
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -153,10 +166,10 @@ class _SPLoginState extends State<SPLogin> {
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: _validateEmail,
+                      onSaved: (newValue) => _email = newValue!,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -166,11 +179,10 @@ class _SPLoginState extends State<SPLogin> {
                         ),
                       ),
                       validator: _validatePassword,
+                      onSaved: (newValue) => _password = newValue!,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
-
-                    // TODO: Add remember me and forgot password?
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -181,7 +193,6 @@ class _SPLoginState extends State<SPLogin> {
                       ],
                     ),
                     const SizedBox(height: 30),
-
                     SizedBox(
                       height: 50,
                       width: double.infinity,
@@ -194,7 +205,6 @@ class _SPLoginState extends State<SPLogin> {
                       ),
                     ),
                     const SizedBox(height: 15),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -216,7 +226,6 @@ class _SPLoginState extends State<SPLogin> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    
                     Text(
                       _forgotPasswordStatus,
                       style: const TextStyle(color: Colors.green),

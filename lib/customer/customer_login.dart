@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/customer/customer_register.dart';
 import 'package:myapp/customer/customer_homepage.dart';
+import 'package:myapp/helpers/dbhelper.dart';
+import 'package:myapp/models/customer.dart';
 
 class CustomerLogin extends StatefulWidget {
   const CustomerLogin({super.key});
@@ -11,36 +13,52 @@ class CustomerLogin extends StatefulWidget {
 
 class _CustomerLoginState extends State<CustomerLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final _alertformKey = GlobalKey<FormState>();
   String _email = "";
+  String _password = "";
   String _forgotPasswordStatus = '';
   final _emailRegex =
       RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+)(\.[a-zA-Z]{2,})+$');
 
-  void _submitform() {
+// db code starts
+  void _submitform() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text("Login successful"),
-        ),
-      );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const CustomerHomePage();
-          },
-        ),
-      );
+      _formKey.currentState!.save();
+      DatabaseHelper dbHelper = DatabaseHelper.instance;
+      Customer? customer =
+          await dbHelper.authenticateCustomer(_email, _password);
+      if (customer != null) {
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Login successful"),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const CustomerHomePage();
+            },
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Invalid email or password"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
-
+// db code ends
   String? _validateEmail(value) {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
-    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegExp.hasMatch(value)) {
+    if (!_emailRegex.hasMatch(value)) {
       return 'Please enter a valid email';
     }
     return null;
@@ -88,12 +106,11 @@ class _CustomerLoginState extends State<CustomerLogin> {
                     if (_alertformKey.currentState!.validate()) {
                       _alertformKey.currentState!.save();
                       // Replace with your actual logic to send reset link via email
-                      // print('Sending reset link to $_email');
 
-                      // TODO: check db for registered email
+                      // TODO: Implement logic to check db for registered email and send reset link
                       setState(() {
                         _forgotPasswordStatus =
-                            'Password sent to registered email: $_email';
+                            'Password reset link sent to registered email: $_email';
                       });
                       Navigator.of(context).pop();
                     }
@@ -142,6 +159,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: _validateEmail,
+                      onSaved: (newValue) => _email = newValue!,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),
@@ -154,6 +172,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                         ),
                       ),
                       validator: _validatePassword,
+                      onSaved: (newValue) => _password = newValue!,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     const SizedBox(height: 20),

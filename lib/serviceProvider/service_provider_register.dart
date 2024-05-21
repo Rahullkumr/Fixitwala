@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
 import 'package:myapp/serviceProvider/service_provider_login.dart';
+import '../models/service_provider.dart';
+import '../helpers/dbhelper.dart';
 
 class SPRegister extends StatefulWidget {
   const SPRegister({super.key});
@@ -11,7 +13,16 @@ class SPRegister extends StatefulWidget {
 
 class _SPRegisterState extends State<SPRegister> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _designation = [
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
+  // final TextEditingController _categoryController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _availabilityController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final _category = [
     "Electrician",
     "Plumber",
     "Cleaner",
@@ -21,25 +32,66 @@ class _SPRegisterState extends State<SPRegister> {
   ];
   String _selectedVal = "";
 
-  _SPRegisterState() {
-    _selectedVal = _designation[0];
+  @override
+  void initState() {
+    super.initState();
+    _selectedVal = _category[0];
   }
 
-  void _submitform() {
+  final dbHelper = DatabaseHelper.instance;
+
+  void _submitform() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text("Registration successful"),
-        ),
+      
+      // Get the form values
+      String name = _nameController.text;
+      String address = _addressController.text;
+      String email = _emailController.text;
+      String mobile = _mobileController.text;
+      String category = _selectedVal; // Get the selected value
+      String description = _descriptionController.text;
+      String availability = _availabilityController.text;
+      String password = _passwordController.text;
+
+      // Create a Customer object
+      ServiceProvider sp = ServiceProvider(
+        spName: name,
+        address: address,
+        emailId: email,
+        mobileNo: mobile,
+        category: category,
+        description: description,
+        availability: availability,
+        pwd: password,
+        verificationStatus: 0,
       );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const SPDashboard();
-          },
-        ),
-      );
+
+      // Insert the customer into the database
+      await dbHelper.insertServiceProvider(sp).then((value) {
+        // Success scenario - handle successful insertion
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Registration successful"),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const SPDashboard();
+            },
+          ),
+        );
+      }, onError: (error) {
+        // Error scenario - handle insertion failure
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Registration failed"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      });
     }
   }
 
@@ -85,6 +137,23 @@ class _SPRegisterState extends State<SPRegister> {
     RegExp mobileRegExp = RegExp(r'^[6789]\d{9}$');
     if (!mobileRegExp.hasMatch(value)) {
       return 'Please enter a valid Number';
+    }
+    return null;
+  }
+
+  String? _validateAvailability(value) {
+    if (value!.isEmpty) {
+      return 'Please enter availability in hours';
+    }
+    if (value.length > 2 || int.parse(value) < 1 || int.parse(value) > 24) {
+      return 'Please enter valid hours';
+    }
+    return null;
+  }
+
+  String? _validateDescription(value) {
+    if (value!.isEmpty) {
+      return 'Please enter shop name or description';
     }
     return null;
   }
@@ -140,6 +209,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _nameController,
                       validator: _validateName,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
@@ -151,12 +221,11 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _addressController,
                       validator: _validateAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -164,13 +233,12 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       validator: _validateEmail,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Contact Number',
@@ -178,6 +246,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _mobileController,
                       keyboardType: TextInputType.phone,
                       validator: _validateMobile,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -186,14 +255,14 @@ class _SPRegisterState extends State<SPRegister> {
                     DropdownButtonFormField(
                       value: _selectedVal,
                       decoration: const InputDecoration(
-                        labelText: "Designation",
+                        labelText: "Category",
                         border: OutlineInputBorder(),
                       ),
-                      items: _designation
+                      items: _category
                           .map(
-                            (eachItemFromDesignationList) => DropdownMenuItem(
-                              value: eachItemFromDesignationList,
-                              child: Text(eachItemFromDesignationList),
+                            (eachItemFromCategoryList) => DropdownMenuItem(
+                              value: eachItemFromCategoryList,
+                              child: Text(eachItemFromCategoryList),
                             ),
                           )
                           .toList(),
@@ -205,6 +274,31 @@ class _SPRegisterState extends State<SPRegister> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Description/Shop name',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      controller: _descriptionController,
+                      validator: _validateDescription,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Available hours',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      controller: _availabilityController,
+                      keyboardType: TextInputType.number,
+                      validator: _validateAvailability,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
@@ -212,6 +306,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _passwordController,
                       validator: _validatePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
