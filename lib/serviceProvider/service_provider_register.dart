@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/serviceProvider/service_provider_dashboard.dart';
 import 'package:myapp/serviceProvider/service_provider_login.dart';
+import '../models/service_provider.dart';
+import '../helpers/dbhelper.dart';
 
 class SPRegister extends StatefulWidget {
   const SPRegister({super.key});
@@ -11,6 +13,15 @@ class SPRegister extends StatefulWidget {
 
 class _SPRegisterState extends State<SPRegister> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
+  // final TextEditingController _categoryController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _availabilityController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   final _category = [
     "Electrician",
     "Plumber",
@@ -21,25 +32,66 @@ class _SPRegisterState extends State<SPRegister> {
   ];
   String _selectedVal = "";
 
-  _SPRegisterState() {
+  @override
+  void initState() {
+    super.initState();
     _selectedVal = _category[0];
   }
 
-  void _submitform() {
+  final dbHelper = DatabaseHelper.instance;
+
+  void _submitform() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text("Registration successful"),
-        ),
+      
+      // Get the form values
+      String name = _nameController.text;
+      String address = _addressController.text;
+      String email = _emailController.text;
+      String mobile = _mobileController.text;
+      String category = _selectedVal; // Get the selected value
+      String description = _descriptionController.text;
+      String availability = _availabilityController.text;
+      String password = _passwordController.text;
+
+      // Create a Customer object
+      ServiceProvider sp = ServiceProvider(
+        spName: name,
+        address: address,
+        emailId: email,
+        mobileNo: mobile,
+        category: category,
+        description: description,
+        availability: availability,
+        pwd: password,
+        verificationStatus: 0,
       );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const SPDashboard();
-          },
-        ),
-      );
+
+      // Insert the customer into the database
+      await dbHelper.insertServiceProvider(sp).then((value) {
+        // Success scenario - handle successful insertion
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Registration successful"),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const SPDashboard();
+            },
+          ),
+        );
+      }, onError: (error) {
+        // Error scenario - handle insertion failure
+        ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+          const SnackBar(
+            content: Text("Registration failed"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      });
     }
   }
 
@@ -157,6 +209,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _nameController,
                       validator: _validateName,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
@@ -168,12 +221,11 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _addressController,
                       validator: _validateAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -181,6 +233,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       validator: _validateEmail,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -193,6 +246,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _mobileController,
                       keyboardType: TextInputType.phone,
                       validator: _validateMobile,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -226,6 +280,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _descriptionController,
                       validator: _validateDescription,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
@@ -237,6 +292,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _availabilityController,
                       keyboardType: TextInputType.number,
                       validator: _validateAvailability,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -250,6 +306,7 @@ class _SPRegisterState extends State<SPRegister> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      controller: _passwordController,
                       validator: _validatePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),

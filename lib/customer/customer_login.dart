@@ -106,7 +106,6 @@ class _CustomerLoginState extends State<CustomerLogin> {
                     if (_alertformKey.currentState!.validate()) {
                       _alertformKey.currentState!.save();
                       // Replace with your actual logic to send reset link via email
-                      // print('Sending reset link to $_email');
 
                       // TODO: Implement logic to check db for registered email and send reset link
                       setState(() {

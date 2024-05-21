@@ -19,11 +19,11 @@ class _CustomerRegisterState extends State<CustomerRegister> {
   final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // late DatabaseHelper dbHelper;
   final dbHelper = DatabaseHelper.instance;
 
   void _submitform() async {
     if (_formKey.currentState!.validate()) {
+      
       // Get the form values
       String name = _nameController.text;
       String address = _addressController.text;
@@ -42,23 +42,6 @@ class _CustomerRegisterState extends State<CustomerRegister> {
       );
 
       // Insert the customer into the database
-      // await dbHelper.insertCustomer(customer);
-
-      // ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-      //   const SnackBar(
-      //     content: Text("Registration successful"),
-      //   ),
-      // );
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) {
-      //       return const CustomerHomePage();
-      //     },
-      //   ),
-      // );
-// Insert the customer into the database
-
       await dbHelper.insertCustomer(customer).then((value) {
         // Success scenario - handle successful insertion
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(

@@ -7,7 +7,7 @@ class DatabaseHelper {
   static const _databaseName = "fixitwala.db";
   static const _databaseVersion = 1;
   static const String _customerTable = "customers";
-  static const _serviceProviderTable = "service_providers";
+  static const String _serviceProviderTable = "service_providers";
 
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
@@ -67,11 +67,6 @@ class DatabaseHelper {
     // Handle database upgrade if schema changes
   }
 
-  // Close the database
-  Future<void> close() async {
-    final db = await database;
-    db.close();
-  }
 
   // Customer methods
   Future<void> insertCustomer(Customer customer) async {
@@ -163,6 +158,7 @@ class DatabaseHelper {
     }
   }
 
+
   // Service provider methods
   Future<void> insertServiceProvider(ServiceProvider sp) async {
     try {
@@ -171,6 +167,13 @@ class DatabaseHelper {
     } catch (e) {
       print('Error inserting service provider: $e');
     }
+  }
+
+  Future<List<ServiceProvider>> readAllServiceProvider() async {
+    final db = await instance.database;
+    final result = await db.query(_serviceProviderTable);
+
+    return result.map((json) => ServiceProvider.fromMap(json)).toList();
   }
 
   Future<ServiceProvider?> getServiceProvider(int spId) async {
@@ -224,4 +227,26 @@ class DatabaseHelper {
       print('Error deleting service provider: $e');
     }
   }
+
+  Future<ServiceProvider?> authenticateServiceProvider(String email, String password) async {
+    try {
+      final db = await instance.database;
+      final maps = await db.query(
+        _serviceProviderTable,
+        where: 'emailId = ? AND pwd = ?',
+        whereArgs: [email, password],
+      );
+      if (maps.isNotEmpty) {
+        return ServiceProvider.fromMap(maps.first);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error authenticating ServiceProvider: $e');
+      return null;
+    }
+  }
 }
+
+
+//
