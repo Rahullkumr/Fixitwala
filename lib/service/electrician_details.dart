@@ -33,7 +33,10 @@ class ElectricianDetailsPage extends StatelessWidget {
                     height: 150,
                     width: double.infinity,
                     color: Colors.red,
-                    child: const Text("Electrician photo from database"),
+                    child: const Image(
+                    image: AssetImage('images/electrician2.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                   ),
                   // for service provider details and review section
                   Padding(
