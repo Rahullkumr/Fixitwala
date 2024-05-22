@@ -25,7 +25,7 @@ class ChatPage extends StatelessWidget {
                 child: Card(
                   child: ListTile(
                     leading: const CircleAvatar(
-                      backgroundImage: AssetImage('images/ava.png'),
+                      backgroundImage: AssetImage('images/customer.png'),
                       radius: 25,
                     ),
                     title: const Text(

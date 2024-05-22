@@ -3,6 +3,7 @@ import 'package:myapp/customer/customer_register.dart';
 import 'package:myapp/customer/customer_homepage.dart';
 import 'package:myapp/helpers/dbhelper.dart';
 import 'package:myapp/models/customer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomerLogin extends StatefulWidget {
   const CustomerLogin({super.key});
@@ -22,6 +23,10 @@ class _CustomerLoginState extends State<CustomerLogin> {
       RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+)(\.[a-zA-Z]{2,})+$');
 
 // db code starts
+  Future<void> _storeEmail(String email) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('customerEmail', email);
+  }
   void _submitform() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -29,6 +34,9 @@ class _CustomerLoginState extends State<CustomerLogin> {
       Customer? customer =
           await dbHelper.authenticateCustomer(_email, _password);
       if (customer != null) {
+        // Store email in SharedPreferences
+        await _storeEmail(_email);
+        
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
           const SnackBar(
             content: Text("Login successful"),
