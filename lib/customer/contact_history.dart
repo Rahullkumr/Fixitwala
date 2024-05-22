@@ -43,7 +43,7 @@ class ContactHistory extends StatelessWidget {
                                     Card(
                                       elevation: 0,
                                       child: Image(
-                                        image: AssetImage('images/ava.png'),
+                                        image: AssetImage('images/customer.png'),
                                         height: 60,
                                         width: 60,
                                         fit: BoxFit.cover,

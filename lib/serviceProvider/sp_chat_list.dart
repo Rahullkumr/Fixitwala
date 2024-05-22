@@ -32,7 +32,7 @@ class SPChatList extends StatelessWidget {
                 child: Card(
                   child: ListTile(
                     leading: const CircleAvatar(                      
-                      backgroundImage: AssetImage('images/avat.png',),
+                      backgroundImage: AssetImage('images/sp.png',),
                       radius: 25,
                     ),
                     title: const Text(

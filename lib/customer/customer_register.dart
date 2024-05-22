@@ -3,6 +3,7 @@ import 'package:myapp/customer/customer_login.dart';
 import 'package:myapp/customer/customer_homepage.dart';
 import '../models/customer.dart';
 import '../helpers/dbhelper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomerRegister extends StatefulWidget {
   const CustomerRegister({super.key});
@@ -20,6 +21,11 @@ class _CustomerRegisterState extends State<CustomerRegister> {
   final TextEditingController _passwordController = TextEditingController();
 
   final dbHelper = DatabaseHelper.instance;
+
+   Future<void> _storeEmail(String email) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('customerEmail', email);
+  }
 
   void _submitform() async {
     if (_formKey.currentState!.validate()) {
@@ -42,7 +48,10 @@ class _CustomerRegisterState extends State<CustomerRegister> {
       );
 
       // Insert the customer into the database
-      await dbHelper.insertCustomer(customer).then((value) {
+      await dbHelper.insertCustomer(customer).then((value) async {
+        // Store email in SharedPreferences
+        await _storeEmail(email);
+        
         // Success scenario - handle successful insertion
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
           const SnackBar(
