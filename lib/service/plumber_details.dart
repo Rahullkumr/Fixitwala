@@ -35,7 +35,7 @@ class PlumberDetailsPage extends StatelessWidget {
                     width: double.infinity,
                     color: Colors.red,
                     child: const Image(
-                    image: AssetImage('images/plumber.jpg'),
+                    image: AssetImage('images/plumber2.png'),
                     fit: BoxFit.cover,
                   ),
                   ),

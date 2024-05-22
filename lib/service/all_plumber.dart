@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 class PlumberPage extends StatelessWidget {
   const PlumberPage({super.key});
 
-  // this should come from database
-  final plumberDetails = const [
-    "1",
-    "2",
-  ];
+
+  final plumberDetails = const ["1", "2"]; // Plumber IDs or unique identifiers
+
+  final plumberImages = const {
+    "1": 'images/plumber1.jpg',
+    "2": 'images/plumber2.png',
+    // Add more key-value pairs for other plumbers
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +44,9 @@ class PlumberPage extends StatelessWidget {
                         ),
                         itemCount: plumberDetails.length,
                         itemBuilder: (context, index) {
-                          return _buildServiceCard(
-                              plumberDetails[index], context);
+                      final String plumberId = plumberDetails[index];
+                      final String imagePath = plumberImages[plumberId] ?? 'images/default_plumber.jpg';
+                      return _buildServiceCard(imagePath, context);
                         },
                       ),
                     ),
@@ -57,7 +61,7 @@ class PlumberPage extends StatelessWidget {
   }
 }
 
-Widget _buildServiceCard(String page, BuildContext context) {
+Widget _buildServiceCard(String imagePath, BuildContext context) {
   return InkWell(
     onTap: () {
       Navigator.push(
@@ -84,8 +88,9 @@ Widget _buildServiceCard(String page, BuildContext context) {
                 child: Container(
                   color: Colors.cyan,
                   height: 90,
-                  child: const Image(
-                    image: AssetImage('images/plumber.jpg'),
+                  child: Image(
+                    // image: AssetImage('images/plumber$no.jpg'),
+                    image: AssetImage(imagePath),
                     fit: BoxFit.cover,
                   ),
                 ),
