@@ -36,8 +36,8 @@ class CustomerLandingPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(18.0),
                 child: Text(
-                  'This app works only in Pune City',
-                  style: TextStyle(fontSize: 40),
+                  'This app works only in Ranchi City',
+                  style: TextStyle(fontSize: 36),
                 ),
               ),
               const SizedBox(height: 20),
