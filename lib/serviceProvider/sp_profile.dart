@@ -166,6 +166,7 @@ class SPProfile extends StatelessWidget {
             onPressed: () async {
               // Handle account deletion logic here (example using a simulated API call)
               final isDeleted = await _deleteAccount(); // Simulate API call
+              if (!context.mounted) return;
               if (isDeleted) {
                 // Account deletion successful - navigate back (or show success message)
                 Navigator.popUntil(

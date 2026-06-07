@@ -68,6 +68,7 @@ class _SPRegisterState extends State<SPRegister> {
 
       // Insert the customer into the database
       await dbHelper.insertServiceProvider(sp).then((value) {
+        if (!mounted) return;
         // Success scenario - handle successful insertion
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
           const SnackBar(
@@ -95,7 +96,7 @@ class _SPRegisterState extends State<SPRegister> {
     }
   }
 
-  String? _validateName(value) {
+  String? _validateName(String? value) {
     if (value!.isEmpty) {
       return 'Please enter Name';
     }
@@ -109,7 +110,7 @@ class _SPRegisterState extends State<SPRegister> {
     return null;
   }
 
-  String? _validateAddress(value) {
+  String? _validateAddress(String? value) {
     if (value!.isEmpty) {
       return 'Please enter Address';
     }
@@ -119,7 +120,7 @@ class _SPRegisterState extends State<SPRegister> {
     return null;
   }
 
-  String? _validateEmail(value) {
+  String? _validateEmail(String? value) {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
@@ -130,7 +131,7 @@ class _SPRegisterState extends State<SPRegister> {
     return null;
   }
 
-  String? _validateMobile(value) {
+  String? _validateMobile(String? value) {
     if (value!.isEmpty) {
       return 'Please enter phone number';
     }
@@ -141,7 +142,7 @@ class _SPRegisterState extends State<SPRegister> {
     return null;
   }
 
-  String? _validateAvailability(value) {
+  String? _validateAvailability(String? value) {
     if (value!.isEmpty) {
       return 'Please enter availability in hours';
     }
@@ -151,14 +152,14 @@ class _SPRegisterState extends State<SPRegister> {
     return null;
   }
 
-  String? _validateDescription(value) {
+  String? _validateDescription(String? value) {
     if (value!.isEmpty) {
       return 'Please enter shop name or description';
     }
     return null;
   }
 
-  String? _validatePassword(value) {
+  String? _validatePassword(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';
     }

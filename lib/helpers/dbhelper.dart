@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/customer.dart';
@@ -74,7 +75,7 @@ class DatabaseHelper {
       final db = await instance.database;
       await db.insert(_customerTable, customer.toMap());
     } catch (e) {
-      print('Error inserting customer: $e');
+      debugPrint('Error inserting customer: $e');
     }
   }
 
@@ -96,7 +97,7 @@ class DatabaseHelper {
         return null;
       }
     } catch (e) {
-      print('Error fetching customer: $e');
+      debugPrint('Error fetching customer: $e');
       return null;
     }
   }
@@ -112,7 +113,7 @@ class DatabaseHelper {
         return null;
       }
     } catch (e) {
-      print('Error fetching customer by email: $e');
+      debugPrint('Error fetching customer by email: $e');
       return null;
     }
   }
@@ -123,7 +124,7 @@ class DatabaseHelper {
       return await db.update(_customerTable, customer.toMap(),
           where: 'cId = ?', whereArgs: [customer.cId]);
     } catch (e) {
-      print('Error updating customer: $e');
+      debugPrint('Error updating customer: $e');
       return -1;
     }
   }
@@ -134,7 +135,7 @@ class DatabaseHelper {
 
       return await db.delete(_customerTable, where: 'cId = ?', whereArgs: [cId]);
     } catch (e) {
-      print('Error deleting customer: $e');
+      debugPrint('Error deleting customer: $e');
       return -1;
     }
   }
@@ -153,7 +154,7 @@ class DatabaseHelper {
         return null;
       }
     } catch (e) {
-      print('Error authenticating customer: $e');
+      debugPrint('Error authenticating customer: $e');
       return null;
     }
   }
@@ -165,7 +166,7 @@ class DatabaseHelper {
       final db = await instance.database;
       await db.insert(_serviceProviderTable, sp.toMap());
     } catch (e) {
-      print('Error inserting service provider: $e');
+      debugPrint('Error inserting service provider: $e');
     }
   }
 
@@ -187,7 +188,7 @@ class DatabaseHelper {
         return null;
       }
     } catch (e) {
-      print('Error fetching service provider: $e');
+      debugPrint('Error fetching service provider: $e');
       return null;
     }
   }
@@ -203,7 +204,7 @@ class DatabaseHelper {
         return null;
       }
     } catch (e) {
-      print('Error fetching service provider by email: $e');
+      debugPrint('Error fetching service provider by email: $e');
       return null;
     }
   }
@@ -214,7 +215,7 @@ class DatabaseHelper {
       await db.update(_serviceProviderTable, sp.toMap(),
           where: 'spId = ?', whereArgs: [sp.spId]);
     } catch (e) {
-      print('Error updating service provider: $e');
+      debugPrint('Error updating service provider: $e');
     }
   }
 
@@ -224,7 +225,7 @@ class DatabaseHelper {
       await db
           .delete(_serviceProviderTable, where: 'spId = ?', whereArgs: [spId]);
     } catch (e) {
-      print('Error deleting service provider: $e');
+      debugPrint('Error deleting service provider: $e');
     }
   }
 
@@ -242,7 +243,7 @@ class DatabaseHelper {
         return null;
       }
     } catch (e) {
-      print('Error authenticating ServiceProvider: $e');
+      debugPrint('Error authenticating ServiceProvider: $e');
       return null;
     }
   }

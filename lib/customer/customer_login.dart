@@ -36,7 +36,8 @@ class _CustomerLoginState extends State<CustomerLogin> {
       if (customer != null) {
         // Store email in SharedPreferences
         await _storeEmail(_email);
-        
+        if (!mounted) return;
+
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
           const SnackBar(
             content: Text("Login successful"),
@@ -62,7 +63,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
     }
   }
 // db code ends
-  String? _validateEmail(value) {
+  String? _validateEmail(String? value) {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
@@ -72,7 +73,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
     return null;
   }
 
-  String? _validatePassword(value) {
+  String? _validatePassword(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';
     }

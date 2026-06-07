@@ -9,7 +9,6 @@ class ChangePasswordPage extends StatefulWidget {
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _currentPassword = '';
   String _newPassword = '';
   String _confirmPassword = '';
 
@@ -40,7 +39,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   }
                   return null;
                 },
-                onSaved: (newValue) => _currentPassword = newValue!,
               ),
               const SizedBox(height: 16.0),
               TextFormField(
