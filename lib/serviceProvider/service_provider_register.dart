@@ -253,7 +253,7 @@ class _SPRegisterState extends State<SPRegister> {
                     ),
                     const SizedBox(height: 20),
                     DropdownButtonFormField(
-                      value: _selectedVal,
+                      initialValue: _selectedVal,
                       decoration: const InputDecoration(
                         labelText: "Category",
                         border: OutlineInputBorder(),
