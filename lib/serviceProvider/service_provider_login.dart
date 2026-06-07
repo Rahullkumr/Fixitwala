@@ -78,6 +78,7 @@ class _SPLoginState extends State<SPLogin> {
       DatabaseHelper dbHelper = DatabaseHelper.instance;
       ServiceProvider? sp =
           await dbHelper.authenticateServiceProvider(_email, _password);
+      if (!mounted) return;
 
       if (sp != null) {
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
@@ -105,7 +106,7 @@ class _SPLoginState extends State<SPLogin> {
     }
   }
 
-  String? _validateEmail(value) {
+  String? _validateEmail(String? value) {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
@@ -115,7 +116,7 @@ class _SPLoginState extends State<SPLogin> {
     return null;
   }
 
-  String? _validatePassword(value) {
+  String? _validatePassword(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';
     }

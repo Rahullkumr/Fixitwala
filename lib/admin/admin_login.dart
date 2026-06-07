@@ -15,7 +15,7 @@ class _AdminLoginState extends State<AdminLogin> {
   String email = '';
   String pwd = '';
 
-  String? _validateEmail(value) {
+  String? _validateEmail(String? value) {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
@@ -26,7 +26,7 @@ class _AdminLoginState extends State<AdminLogin> {
     return null;
   }
 
-  String? _validatePassword(value) {
+  String? _validatePassword(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';
     }

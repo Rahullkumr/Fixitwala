@@ -51,7 +51,8 @@ class _CustomerRegisterState extends State<CustomerRegister> {
       await dbHelper.insertCustomer(customer).then((value) async {
         // Store email in SharedPreferences
         await _storeEmail(email);
-        
+        if (!mounted) return;
+
         // Success scenario - handle successful insertion
         ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
           const SnackBar(
@@ -77,7 +78,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
     }
   }
 
-  String? _validateName(value) {
+  String? _validateName(String? value) {
     if (value!.isEmpty) {
       return 'Please enter Name';
     }
@@ -91,7 +92,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
     return null;
   }
 
-  String? _validateAddress(value) {
+  String? _validateAddress(String? value) {
     if (value!.isEmpty) {
       return 'Please enter Address';
     }
@@ -101,7 +102,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
     return null;
   }
 
-  String? _validateEmail(value) {
+  String? _validateEmail(String? value) {
     if (value!.isEmpty) {
       return 'Please enter email';
     }
@@ -112,7 +113,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
     return null;
   }
 
-  String? _validateMobile(value) {
+  String? _validateMobile(String? value) {
     if (value!.isEmpty) {
       return 'Please enter phone number';
     }
@@ -123,7 +124,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
     return null;
   }
 
-  String? _validatePassword(value) {
+  String? _validatePassword(String? value) {
     if (value!.isEmpty) {
       return 'Please enter password';
     }
