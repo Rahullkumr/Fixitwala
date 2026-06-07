@@ -23,6 +23,8 @@ class ElectricianPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -42,13 +44,14 @@ class ElectricianPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     SizedBox(
-                      height: 600,
+                      height: height * 0.75,
                       child: GridView.builder(
                         gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                            SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 8,
+                          mainAxisSpacing: width * 0.025,
+                          crossAxisSpacing: width * 0.02,
+                          childAspectRatio: 0.72,
                         ),
                         itemCount: electricianDetails.length,
                         itemBuilder: (context, index) {
@@ -71,6 +74,7 @@ class ElectricianPage extends StatelessWidget {
 }
 
 Widget _buildServiceCard(String imagePath, BuildContext context) {
+  final double width = MediaQuery.of(context).size.width;
   return InkWell(
     onTap: () {
       Navigator.push(
@@ -84,55 +88,50 @@ Widget _buildServiceCard(String imagePath, BuildContext context) {
     },
     child: Card(
       elevation: 6,
+      clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  color: Colors.red,
-                  height: 90,
-                  child: Image(
-                    // image: AssetImage('images/plumber$no.jpg'),
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
+          Expanded(
+            child: SizedBox(
+              width: double.infinity,
+              child: Image(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(height: width * 0.02),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.013),
+            child: const Text(
+              "description/shop name",
+              style: TextStyle(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          SizedBox(height: width * 0.02),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.013),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: width * 0.05,
+                  backgroundColor: Colors.black12,
+                  child: const Icon(Icons.person),
+                ),
+                SizedBox(width: width * 0.025),
+                const Flexible(
+                  child: Text(
+                    "Name",
+                    style: TextStyle(color: Colors.grey),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          const SizedBox(height: 10),
-          const Row(
-            children: [
-              Padding(  
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Text("description/shop name",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.black12,
-                      child: Icon(Icons.person),
-                    ),
-                    // Text("c avatar same image"),
-                    SizedBox(width: 10),
-                    Text("Name", style: TextStyle(color: Colors.grey)),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          SizedBox(height: width * 0.02),
         ],
       ),
     ),
